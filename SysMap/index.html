@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planejador de Rotas Urbanas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=SUA_CHAVE_API_AQUI&libraries=places" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <span>RUP</span>
+            </div>
+            <nav class="nav-menu">
+                <div class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Destinos</span>
+                </div>
+                <div class="nav-item active">
+                    <i class="fas fa-route"></i>
+                    <span>Rotas</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Contatos</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-truck"></i>
+                    <span>Entregas</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Configurações</span>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1>Planejador de Rotas Urbanas</h1>
+                <div class="user-profile">
+                    <img src="#" alt="Perfil">
+                </div>
+            </div>
+            
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Map -->
+                <div id="map"></div>
+                
+                <!-- Route Panel -->
+                <div class="route-panel">
+                    <div class="panel-header">
+                        <h2>Buscar Rota</h2>
+                        <div class="actions">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-header">
+                        <div class="tab active">Detalhes</div>
+                        <div class="tab">Rastreamento</div>
+                    </div>
+                    
+                    <div class="search-container">
+                        <div class="input-group">
+                            <label for="origem">Origem:</label>
+                            <input type="text" id="origem" placeholder="Digite o endereço de origem">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="destino">Destino:</label>
+                            <input type="text" id="destino" placeholder="Digite o endereço de destino">
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Ordenar por:</label>
+                            <select id="ordenacao">
+                                <option value="tempo">Tempo estimado</option>
+                                <option value="distancia">Distância</option>
+                                <option value="custo">Custo</option>
+                            </select>
+                        </div>
+                        
+                        <button id="buscar-rota">Buscar Rota</button>
+                    </div>
+                    
+                    <div class="route-status">
+                        <div class="status-item">
+                            <div class="status-dot"></div>
+                            <div class="status-content">
+                                <div class="status-title">Origem Selecionada</div>
+                                <div class="status-details" id="origem-detalhe">Aguardando seleção...</div>
+                            </div>
+                        </div>
+                        <div class="status-line"></div>
+                        <div class="status-item">
+                            <div class="status-dot"></div>
+                            <div class="status-content">
+                                <div class="status-title">Destino Selecionado</div>
+                                <div class="status-details" id="destino-detalhe">Aguardando seleção...</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="info-panel">
+                        <p>Selecione origem e destino para visualizar informações da rota.</p>
+                    </div>
+                    
+                    <div id="route-details" class="hidden">
+                        <div class="tracker-header">
+                            <h3>Informações da Rota</h3>
+                        </div>
+                        
+                        <div class="tracker-stats">
+                            <div class="stat-item">
+                                <div class="stat-value" id="distancia">-</div>
+                                <div class="stat-label">Distância</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="tempo">-</div>
+                                <div class="stat-label">Tempo</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="custo">-</div>
+                                <div class="stat-label">Custo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/grafo.js"></script>
+    <script src="js/dijkstra.js"></script>
+    <script src="js/maps.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
